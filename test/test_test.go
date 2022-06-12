@@ -4,17 +4,35 @@ import (
 	"testing"
 )
 
-func TestA_sayHi(t *testing.T) {
-	a := new(A)
-	a.FuncCom()
+type Iter func() (int, bool)
+
+func tk(n int) Iter {
+	data := []int{}
+	for i := 0; i < n; i++ {
+		data = append(data, i)
+	}
+
+	cnt := 0
+	l := len(data)
+	return func() (int, bool) {
+		if cnt >= l {
+			return 0, false
+		}
+		e := data[cnt]
+		cnt++
+		return e, true
+	}
 }
 
-func K() {
-	a := 0
-	for i := 0; i < 10; i++ {
-		go func() {
-			a++
-			println(a)
-		}()
-	}
+func TestA_sayHi(t *testing.T) {
+
+}
+
+func test() (ret int) {
+	i := 100
+	defer func(a int) {
+		ret = i + 100
+	}(i)
+
+	return 300
 }

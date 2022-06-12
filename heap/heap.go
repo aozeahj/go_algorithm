@@ -27,7 +27,7 @@ package heap
 
 func AdjustHeap(a []int, index int) {
 	left := index * 2
-	right := index*2 + 1
+	right := left + 1
 	l := len(a)
 	largest := index
 	if left < l && a[left] > a[largest] {
@@ -59,8 +59,8 @@ func HeapSort(a []int) {
 	BuildHeap(a)
 	l := len(a)
 
-	for i := 0; i < l-2; i++ {
-		a[l-i-1], a[1] = a[1], a[l-i-1]
-		AdjustHeap(a[:l-i-1], 1)
+	for i := 1; i < l-1; i++ {
+		a[l-i], a[1] = a[1], a[l-i]
+		AdjustHeap(a[:l-i], 1)
 	}
 }

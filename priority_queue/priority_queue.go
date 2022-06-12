@@ -36,7 +36,7 @@ func IncreaseToK(a []int, index int, k int) {
 	a[index] = k
 	largest := index
 	parent := index / 2
-	for parent > 0 && a[parent] < a[largest] {
+	for parent >= 0 && a[parent] < a[largest] {
 		a[parent], a[largest] = a[largest], a[parent]
 		largest = parent
 		parent = parent / 2
